@@ -1,0 +1,28 @@
+name: calculator
+description: A calculator to perform simple mathematical expressions.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^0.1.2
+  flutter_statusbarcolor:
+  math_expressions:
+  provider:
+  toast:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_launcher_icons:
+
+flutter_icons:
+  image_path: assets/icon.png
+  android: true
+  ios: true
+
+flutter:
+  uses-material-design: true
