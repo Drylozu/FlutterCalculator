@@ -1,0 +1,63 @@
+id: 'defaults:light'
+display_name: 'Light'
+author: 'Drylotrans'
+
+notification_bar:
+  background:
+    color: 0xFAFAFA
+    opacity: 1
+  icons_color: 'dark'
+
+navigation_bar:
+  background:
+    color: 0xFAFAFA
+    opacity: 1
+  icons_color: 'dark'
+
+background:
+  color: 0xFAFAFA
+  opacity: 1
+  image_url: null
+  blur: 0
+
+settings_button:
+  color: 0x000000
+  opacity: 1
+
+result_text:
+  color: 0x000000
+  opacity: 1
+
+pre_result_text:
+  color: 0x000000
+  opacity: 0.87
+
+grid_borders:
+  color: 0x000000
+  opacity: 0.12
+
+numeric_pad:
+  text:
+    color: 0x000000
+    opacity: 1
+  exit_button:
+    color: 0xFF2222
+    opacity: 1
+  result_button:
+    color: 0xFFFFFF
+    opacity: 1
+
+settings:
+  bar:
+    background:
+      color: 0xFFFFFF
+      opacity: 1
+    text:
+      color: 0x000000
+      opacity: 1
+  title:
+    color: 0x000000
+    opacity: 1
+  subtitle:
+    color: 0x000000
+    opacity: 0.6
