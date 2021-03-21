@@ -15,7 +15,7 @@ class CalculatorExit extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () => Toast.show(
-        "Press again to exit.",
+        'Press again to exit.',
         context,
         duration: Toast.LENGTH_LONG,
         gravity: Toast.BOTTOM,

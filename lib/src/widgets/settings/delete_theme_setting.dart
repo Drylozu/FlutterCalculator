@@ -64,11 +64,11 @@ class DeleteThemeSetting extends StatelessWidget {
                     ),
                   ),
                   actions: <Widget>[
-                    FlatButton(
+                    TextButton(
                       child: Text('Cancel'),
                       onPressed: () => Navigator.of(context).pop(),
                     ),
-                    FlatButton(
+                    TextButton(
                       child: Text('Accept'),
                       onPressed: () async {
                         String error = await removeTheme(theme.id);

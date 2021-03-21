@@ -8,7 +8,7 @@ Don't forget :star: if you like it :heart:
 <img src="https://i.imgur.com/tfe5VUi.jpg" height="450em" /> <img src="https://i.imgur.com/4n7FR4A.jpg" height="450em" />
 
 ## Installation
-1. Go to [releases page](https://github.com/Drylotrans/FlutterCalculator/releases).
+1. Go to [releases page](https://github.com/Drylozu/FlutterCalculator/releases).
 2. Find the last stable version.
 3. Download the APK for your system (if you don't know what APK choose, download the _`app-release.apk`_).
 

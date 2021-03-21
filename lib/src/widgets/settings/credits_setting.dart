@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:package_info/package_info.dart';
+import 'package:flutter/material.dart';
 
 import '../../theme.dart' as Local;
 

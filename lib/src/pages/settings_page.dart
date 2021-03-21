@@ -1,7 +1,7 @@
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
 import 'package:package_info/package_info.dart';
+import 'package:flutter/material.dart';
 import 'package:yaml/yaml.dart';
 
 import '../widgets/settings/delete_theme_setting.dart';

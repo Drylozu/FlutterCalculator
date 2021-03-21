@@ -1,8 +1,8 @@
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:math_expressions/math_expressions.dart';
+import 'package:flutter/material.dart';
 import 'package:yaml/yaml.dart';
 
 import '../widgets/background_image.dart';

@@ -1,4 +1,4 @@
-package com.drylotrans.calculator
+package xyz.drylo.calculator
 
 import io.flutter.embedding.android.FlutterActivity
 

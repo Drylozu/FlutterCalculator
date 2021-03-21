@@ -19,6 +19,7 @@ dependencies:
   file_picker:
   package_info:
   page_transition:
+  provider:
 
 flutter_icons:
   image_path: assets/icon.png

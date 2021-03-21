@@ -1,7 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.drylotrans.calculator">
+    package="xyz.drylo.calculator">
     <application
-        android:name="io.flutter.app.FlutterApplication"
         android:label="Deivid's Calculator"
         android:icon="@mipmap/ic_launcher">
         <activity
