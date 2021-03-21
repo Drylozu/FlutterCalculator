@@ -22,8 +22,8 @@ class CalculatorText extends StatelessWidget {
           '${this.text}',
           style: TextStyle(
             fontSize: 65.0,
-            color: Color(theme.numericPad.text.color).withOpacity(
-                theme.numericPad.text.opacity), //COLOR: result text
+            color: Color(theme.resultText.color).withOpacity(
+                theme.resultText.opacity), //COLOR: result text
           ),
         ),
       ),

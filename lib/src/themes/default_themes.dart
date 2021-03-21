@@ -106,7 +106,7 @@ Theme lightTheme = Theme(
   ),
   resultText: NormalColor(
     color: 0x000000,
-    opacity: 0.87,
+    opacity: 1,
   ),
   preResultText: NormalColor(
     color: 0x000000,
