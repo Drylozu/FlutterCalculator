@@ -31,7 +31,10 @@ class ThemeProvider extends ChangeNotifier {
   registerTheme(String rawTheme) async {
     await _initPrefs();
     Local.Theme theme = Local.Theme.fromJson(loadYaml(rawTheme));
-    loadedThemes.add(theme);
+    if (loadedThemes.any((t) => t.id == theme.id))
+      loadedThemes[loadedThemes.indexWhere((t) => t.id == theme.id)] = theme;
+    else
+      loadedThemes.add(theme);
     selectedTheme = theme;
     await _saveThemes();
     notifyListeners();
