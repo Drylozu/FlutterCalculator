@@ -68,6 +68,7 @@ class DeleteThemeSetting extends StatelessWidget {
                     TextButton(
                       child: Text('Accept'),
                       onPressed: () async {
+                        Navigator.of(context).pop();
                         try {
                           await themes.removeTheme(theme.id);
                           Toast.show(
