@@ -14,7 +14,7 @@ Don't forget :star: if you like it :heart:
 
 ## Build your own APK
 **Prerequisites**: you must have Flutter in your system.
-1. Download this repository (_`git clone https://github.com/Drylotrans/FlutterCalculator.git`_).
+1. Download this repository (_`git clone https://github.com/Drylozu/FlutterCalculator.git`_).
 2. Make your own digital signature for the APK. (https://flutter.dev/docs/deployment/android#signing-the-app).
 3. Install the dependencies running `flutter pub get`.
 4. Build your APK with `flutter build apk`.
