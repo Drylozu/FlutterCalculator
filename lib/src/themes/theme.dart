@@ -137,7 +137,7 @@ class NumericPad {
   NormalColor exitButton;
   NormalColor resultButton;
 
-  NumericPad({this.text, this.resultButton});
+  NumericPad({this.text, this.exitButton, this.resultButton});
 
   NumericPad.fromJson(YamlMap json) {
     text = json['text'] != null

@@ -1,18 +1,17 @@
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
 
-import '../../theme.dart' as Local;
-import '../../themes.dart';
+import '../../themes/theme_provider.dart';
 
 class DeleteThemeSetting extends StatelessWidget {
-  final Local.Theme theme;
-  final Function reload;
-  final Function reloadMain;
-
-  DeleteThemeSetting(this.theme, this.reload, this.reloadMain);
+  DeleteThemeSetting();
 
   @override
   Widget build(BuildContext context) {
+    final themes = Provider.of<ThemeProvider>(context);
+    final theme = themes.selectedTheme;
+
     TextStyle titleStyle = TextStyle(
       color: Color(theme.settings.title.color)
           .withOpacity(theme.settings.title.opacity),
@@ -34,15 +33,13 @@ class DeleteThemeSetting extends StatelessWidget {
             style: subtitleStyle,
           ),
           onTap: () {
-            if (theme.id.startsWith('defaults')) {
-              Toast.show(
+            if (theme.id.startsWith('defaults'))
+              return Toast.show(
                 'You can\'t remove default themes',
                 context,
                 duration: Toast.LENGTH_LONG,
                 gravity: Toast.BOTTOM,
               );
-              return;
-            }
             showDialog(
               context: context,
               builder: (BuildContext context) {
@@ -71,17 +68,22 @@ class DeleteThemeSetting extends StatelessWidget {
                     TextButton(
                       child: Text('Accept'),
                       onPressed: () async {
-                        String error = await removeTheme(theme.id);
-                        if (error != '')
+                        try {
+                          await themes.removeTheme(theme.id);
                           Toast.show(
-                            'Couldn\'t remove the theme ($error)',
+                            'Successfully removed theme ${theme.id}.',
                             context,
                             duration: Toast.LENGTH_LONG,
                             gravity: Toast.BOTTOM,
                           );
-                        reloadMain();
-                        reload();
-                        Navigator.of(context).pop();
+                        } catch (e) {
+                          Toast.show(
+                            'Couldn\'t remove the theme.',
+                            context,
+                            duration: Toast.LENGTH_LONG,
+                            gravity: Toast.BOTTOM,
+                          );
+                        }
                       },
                     ),
                   ],

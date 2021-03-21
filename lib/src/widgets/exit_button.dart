@@ -1,17 +1,20 @@
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:toast/toast.dart';
 
-import '../theme.dart' as Local;
+import '../themes/theme_provider.dart';
 
 class CalculatorExit extends StatelessWidget {
   final double height;
-  final Local.Theme theme;
 
-  CalculatorExit(this.height, this.theme);
+  CalculatorExit(this.height);
 
   @override
   Widget build(BuildContext context) {
+    final themes = Provider.of<ThemeProvider>(context);
+    final theme = themes.selectedTheme;
+
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () => Toast.show(

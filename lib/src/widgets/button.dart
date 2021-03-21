@@ -1,19 +1,21 @@
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
-import '../theme.dart' as Local;
+import '../themes/theme_provider.dart';
 
 class CalculatorButton extends StatelessWidget {
   final String text;
   final double height;
-  final Local.Theme theme;
   final Function onTap;
   final bool circle;
 
-  CalculatorButton(this.text, this.height, this.theme,
-      {this.onTap, this.circle = false});
+  CalculatorButton(this.text, this.height, {this.onTap, this.circle = false});
 
   @override
   Widget build(BuildContext context) {
+    final themes = Provider.of<ThemeProvider>(context);
+    final theme = themes.selectedTheme;
+
     final textWidget = Text(
       text,
       style: TextStyle(

@@ -1,16 +1,17 @@
 import 'package:package_info/package_info.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
-import '../../theme.dart' as Local;
+import '../../themes/theme_provider.dart';
 
 class CreditsSetting extends StatelessWidget {
-  final Local.Theme theme;
-  final PackageInfo packageInfo;
-
-  CreditsSetting(this.packageInfo, this.theme);
+  CreditsSetting();
 
   @override
   Widget build(BuildContext context) {
+    final themes = Provider.of<ThemeProvider>(context);
+    final theme = themes.selectedTheme;
+
     TextStyle titleStyle = TextStyle(
       color: Color(theme.settings.title.color)
           .withOpacity(theme.settings.title.opacity),
@@ -20,23 +21,28 @@ class CreditsSetting extends StatelessWidget {
           .withOpacity(theme.settings.subtitle.opacity),
     ); //COLOR: settings tile subtitle
 
-    return Column(
-      children: [
-        ListTile(
-          title: Text(
-            'Made by Drylotrans',
-            style: titleStyle,
+    return FutureBuilder<PackageInfo>(
+      future: PackageInfo.fromPlatform(),
+      builder: (context, snapshot) => Column(
+        children: [
+          ListTile(
+            title: Text(
+              'Made by Drylozu',
+              style: titleStyle,
+            ),
+            subtitle: Text(
+              snapshot.hasData
+                  ? '${snapshot.data.appName} - v${snapshot.data.version}'
+                  : 'Retrieving info...',
+              style: subtitleStyle,
+            ),
           ),
-          subtitle: Text(
-            packageInfo == null ? '...' : '${packageInfo.appName} - v${packageInfo.version}',
-            style: subtitleStyle,
+          Divider(
+            color: Color(theme.gridBorders.color)
+                .withOpacity(theme.gridBorders.opacity), //COLOR: grid borders
           ),
-        ),
-        Divider(
-          color: Color(theme.gridBorders.color)
-              .withOpacity(theme.gridBorders.opacity), //COLOR: grid borders
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

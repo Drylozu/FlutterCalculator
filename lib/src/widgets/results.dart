@@ -1,17 +1,20 @@
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
-import '../theme.dart' as Local;
+import '../themes/theme_provider.dart';
 
 class CalculatorText extends StatelessWidget {
   final String text;
   final String subtext;
   final double height;
-  final Local.Theme theme;
 
-  CalculatorText(this.text, this.subtext, this.height, this.theme);
+  CalculatorText(this.text, this.subtext, this.height);
 
   @override
   Widget build(BuildContext context) {
+    final themes = Provider.of<ThemeProvider>(context);
+    final theme = themes.selectedTheme;
+
     List<Widget> texts = [
       FittedBox(
         fit: BoxFit.fitWidth,

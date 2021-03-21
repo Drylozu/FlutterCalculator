@@ -1,17 +1,16 @@
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
-import '../../theme.dart' as Local;
-import '../../themes.dart';
+import '../../themes/theme_provider.dart';
 
 class ThemeSetting extends StatelessWidget {
-  final List<Local.Theme> themes;
-  final Local.Theme theme;
-  final Function reload;
-
-  ThemeSetting(this.themes, this.theme, this.reload);
+  ThemeSetting();
 
   @override
   Widget build(BuildContext context) {
+    final themes = Provider.of<ThemeProvider>(context);
+    final theme = themes.selectedTheme;
+
     TextStyle titleStyle = TextStyle(
       color: Color(theme.settings.title.color)
           .withOpacity(theme.settings.title.opacity),
@@ -34,7 +33,7 @@ class ThemeSetting extends StatelessWidget {
           ),
           trailing: DropdownButton(
             value: theme.id,
-            items: themes
+            items: themes.loadedThemes
                 .map(
                   (t) => DropdownMenuItem(
                     value: t.id,
@@ -49,12 +48,10 @@ class ThemeSetting extends StatelessWidget {
                 )
                 .toList(),
             dropdownColor: Color(theme.background.color)
-                .withOpacity(0.8), //COLOR: main background
-            onChanged: (id) {
+                .withOpacity(1), //COLOR: main background
+            onChanged: (id) async {
               if (theme.id == id) return;
-              changeTheme(id);
-              reload();
-              Navigator.pop(context);
+              await themes.setTheme(id);
             },
           ),
         ),

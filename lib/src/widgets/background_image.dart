@@ -1,16 +1,18 @@
 import 'dart:ui';
 
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
-import '../theme.dart' as Local;
+import '../themes/theme_provider.dart';
 
 class BackgroundImage extends StatelessWidget {
-  final Local.Theme theme;
-
-  BackgroundImage(this.theme);
+  BackgroundImage();
 
   @override
   Widget build(BuildContext context) {
+    final themes = Provider.of<ThemeProvider>(context);
+    final theme = themes.selectedTheme;
+
     return theme.background.imageUrl != null
         ? Container(
             width: double.infinity,

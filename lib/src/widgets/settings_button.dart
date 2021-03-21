@@ -1,19 +1,21 @@
-import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
 
+import '../themes/theme_provider.dart';
 import '../pages/settings_page.dart';
-import '../theme.dart' as Local;
 
 class SettingsButton extends StatelessWidget {
   final double size;
   final double padding;
-  final Local.Theme theme;
-  final Function reload;
 
-  SettingsButton(this.size, this.padding, this.theme, this.reload);
+  SettingsButton(this.size, this.padding);
 
   @override
   Widget build(BuildContext context) {
+    final themes = Provider.of<ThemeProvider>(context);
+    final theme = themes.selectedTheme;
+
     return Container(
       width: double.infinity,
       child: GestureDetector(
@@ -21,8 +23,8 @@ class SettingsButton extends StatelessWidget {
         onTap: () => Navigator.push(
           context,
           PageTransition(
-            type: PageTransitionType.fade,
-            child: SettingsPage(reload),
+            type: PageTransitionType.bottomToTop,
+            child: SettingsPage(),
           ),
         ),
         child: Padding(

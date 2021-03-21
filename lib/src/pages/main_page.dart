@@ -1,16 +1,15 @@
 import 'dart:ui';
 
-import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+import 'package:flutter_statusbarcolor_ns/flutter_statusbarcolor_ns.dart';
 import 'package:math_expressions/math_expressions.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-import 'package:yaml/yaml.dart';
 
 import '../widgets/background_image.dart';
 import '../widgets/settings_button.dart';
+import '../themes/theme_provider.dart';
 import '../widgets/results.dart';
 import '../widgets/buttons.dart';
-import '../theme.dart' as Local;
-import '../themes.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -23,69 +22,63 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    final themes = Provider.of<ThemeProvider>(context);
+    final theme = themes.selectedTheme;
+
     final screenSize = MediaQuery.of(context).size;
 
-    return FutureBuilder(
-      future: getCurrentTheme(),
-      initialData: Local.Theme.fromJson(YamlMap()),
-      builder: (BuildContext context, AsyncSnapshot<Local.Theme> snapshot) {
-        Local.Theme theme = snapshot.data;
-        FlutterStatusbarcolor.setStatusBarColor(
-            Color(theme.notificationBar.background.color).withOpacity(theme
-                .notificationBar
-                .background
-                .opacity)); //COLOR: notifications bar
-        FlutterStatusbarcolor.setStatusBarWhiteForeground(
-            theme.notificationBar.iconsColor == 'white');
-        FlutterStatusbarcolor.setNavigationBarColor(
-            Color(theme.navigationBar.background.color).withOpacity(theme
-                .navigationBar.background.opacity)); //COLOR: navigation bar
-        FlutterStatusbarcolor.setNavigationBarWhiteForeground(
-            theme.navigationBar.iconsColor == 'white');
-        return Scaffold(
-          backgroundColor: Color(theme.background.color)
-              .withOpacity(theme.background.opacity), //COLOR: main background
-          body: Stack(
+    FlutterStatusbarcolor.setStatusBarColor(
+        Color(theme.notificationBar.background.color).withOpacity(theme
+            .notificationBar.background.opacity)); //COLOR: notifications bar
+    FlutterStatusbarcolor.setStatusBarWhiteForeground(
+        theme.notificationBar.iconsColor == 'white');
+    FlutterStatusbarcolor.setNavigationBarColor(
+        Color(theme.navigationBar.background.color).withOpacity(
+            theme.navigationBar.background.opacity)); //COLOR: navigation bar
+    FlutterStatusbarcolor.setNavigationBarWhiteForeground(
+        theme.navigationBar.iconsColor == 'white');
+
+    return Scaffold(
+      backgroundColor: Color(theme.background.color)
+          .withOpacity(theme.background.opacity), //COLOR: main background
+      body: Stack(
+        children: <Widget>[
+          BackgroundImage(),
+          Column(
             children: <Widget>[
-              BackgroundImage(theme),
-              Column(
-                children: <Widget>[
-                  Container(
-                    height: (screenSize.height / 10),
-                    child: SettingsButton(
-                      (((screenSize.height / 10) / 10) * 4),
-                      (((screenSize.height / 10) / 10) * 3),
-                      theme,
-                      () => setState(() {}),
-                    ),
-                  ),
-                  CalculatorText(
-                    this.text,
-                    this.temporalResult,
-                    ((screenSize.height / 10) * 2.8),
-                    theme,
-                  ),
-                  Divider(
-                    endIndent: 10.0,
-                    indent: 10.0,
-                  ),
-                  CalculatorButtons(
-                    this.handleTapButton,
-                    ((screenSize.height / 10) * 6) / 5.09,
-                    theme,
-                  ),
-                ],
+              Container(
+                height: (screenSize.height / 10),
+                child: SettingsButton(
+                  (((screenSize.height / 10) / 10) * 4),
+                  (((screenSize.height / 10) / 10) * 3),
+                ),
+              ),
+              CalculatorText(
+                this.text,
+                this.temporalResult,
+                ((screenSize.height / 10) * 2.8),
+              ),
+              Divider(
+                endIndent: 10.0,
+                indent: 10.0,
+              ),
+              CalculatorButtons(
+                this.handleTapButton,
+                ((screenSize.height / 10) * 6) / 5.09,
               ),
             ],
           ),
-        );
-      },
+        ],
+      ),
     );
   }
 
   Function handleTapButton(String buttonText) {
     return () {
       setState(() {
+        if (this.text == 'NaN') this.text = '0';
+        if (this.temporalResult == 'NaN') this.text = '0';
+
         if (buttonText == '=' && RegExp('[0-9]\$').hasMatch(this.text)) {
           double result = Parser()
               .parse(this.text)
@@ -120,6 +113,9 @@ class _MainPageState extends State<MainPage> {
 
         this.temporalResult =
             this.temporalResult.replaceAll(RegExp('.0\$'), '');
+
+        if (this.text == 'NaN') this.text = '0';
+        if (this.temporalResult == 'NaN') this.temporalResult = '0';
       });
     };
   }

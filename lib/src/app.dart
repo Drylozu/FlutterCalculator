@@ -1,7 +1,9 @@
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import './pages/main_page.dart';
+import './themes/theme_provider.dart';
 
 class Application extends StatelessWidget {
   @override
@@ -11,9 +13,12 @@ class Application extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MainPage(),
+    return ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: MainPage(),
+      ),
     );
   }
 }
