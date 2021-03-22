@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,7 @@ class BackgroundImage extends StatelessWidget {
             height: double.infinity,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: NetworkImage(theme.background.imageUrl),
+                image: CachedNetworkImageProvider(theme.background.imageUrl),
                 fit: BoxFit.cover,
               ),
             ),
