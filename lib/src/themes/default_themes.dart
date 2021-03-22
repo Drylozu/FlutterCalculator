@@ -14,7 +14,7 @@ Theme darkTheme = Theme(
   navigationBar: Bar(
     background: NormalColor(
       color: 0x000000,
-      opacity: 0.87,
+      opacity: 0.38,
     ),
     iconsColor: 'white',
   ),
@@ -57,7 +57,7 @@ Theme darkTheme = Theme(
   settings: Settings(
     bar: SettingsBar(
       background: NormalColor(
-        color: 0x000000,
+        color: 0x242424,
         opacity: 1,
       ),
       text: NormalColor(
